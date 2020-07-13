@@ -3,7 +3,7 @@
 
 **Customer Segmentation can be a powerful means to identify unsatisfied customer needs. This technique can be used by companies to outperform the competition by developing uniquely appealing products and services.**
 
-  ![](https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2020/01/customer-segmentation-using-ML.jpg)
+  ![](https://miro.medium.com/max/1200/1*rFATWK6tWBrDJ1o1rzEZ8w.png)
  
  
  **Customer Segmentation is the subdivision of a market into discrete customer groups that share similar characteristics. Customer Segmentation can be a powerful means to identify unsatisfied customer needs. Using the above data companies can then outperform the competition by developing uniquely appealing products and services.**
@@ -61,9 +61,9 @@ where,
 
 ## Implementing K Means Algorithm
 
-This project is a part of the Mall Customer Segmentation Data competition held on Kaggle.
+This project is a part of the [Mall Customer Segmentation Data competition](https://www.kaggle.com/vjchoudhary7/customer-segmentation-tutorial-in-python)held on Kaggle.
 
-The dataset can be downloaded from the kaggle website which can be found here[](https://www.kaggle.com/vjchoudhary7/customer-segmentation-tutorial-in-python)
+The dataset can be downloaded from the kaggle website which can be found [here](https://www.kaggle.com/vjchoudhary7/customer-segmentation-tutorial-in-python)
 
 **The steps involved for implementing K means are:**
 1. Importing required libraries.
@@ -77,39 +77,75 @@ from sklearn.decomposition import PCA
 
 
 2. Accessing the dataset
-
-3. Analyzing the dataset
-
-4.Implementing K means algorithm
-
-5.Visualizing the Clusters
-
-
-
-```markdown
-
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+df = pd.read_csv("Customer_data.csv")
+df.head()
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+3. Analyzing the dataset
+```
+ss1_20 = df["Spending Score (1-100)"][(df["Spending Score (1-100)"] >= 1) & (df["Spending Score (1-100)"] <= 20)]
+ss21_40 = df["Spending Score (1-100)"][(df["Spending Score (1-100)"] >= 21) & (df["Spending Score (1-100)"] <= 40)]
+ss41_60 = df["Spending Score (1-100)"][(df["Spending Score (1-100)"] >= 41) & (df["Spending Score (1-100)"] <= 60)]
+ss61_80 = df["Spending Score (1-100)"][(df["Spending Score (1-100)"] >= 61) & (df["Spending Score (1-100)"] <= 80)]
+ss81_100 = df["Spending Score (1-100)"][(df["Spending Score (1-100)"] >= 81) & (df["Spending Score (1-100)"] <= 100)]
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/chinmaye03/Customer--Segmentation-ML/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+ssx = ["1-20", "21-40", "41-60", "61-80", "81-100"]
+ssy = [len(ss1_20.values), len(ss21_40.values), len(ss41_60.values), len(ss61_80.values), len(ss81_100.values)]
 
-### Support or Contact
+plt.figure(figsize=(15,6))
+sns.barplot(x=ssx, y=ssy, palette="nipy_spectral_r")
+plt.title("Spending Scores")
+plt.xlabel("Score")
+plt.ylabel("Number of Customer Having the Score")
+plt.show()
+```
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+4.Implementing K means algorithm
+```
+from sklearn.cluster import KMeans
+wcss = []
+for k in range(1,11):
+    kmeans = KMeans(n_clusters=k, init="k-means++")
+    kmeans.fit(df.iloc[:,1:])
+    wcss.append(kmeans.inertia_)
+plt.figure(figsize=(12,6))    
+plt.grid()
+plt.plot(range(1,11),wcss, linewidth=2, color="red", marker ="8")
+plt.xlabel("K Value")
+plt.xticks(np.arange(1,11,1))
+plt.ylabel("WCSS")
+plt.show()
+```
+
+
+5.Visualizing the Clusters
+```km = KMeans(n_clusters=5)
+clusters = km.fit_predict(df.iloc[:,1:])
+df["label"] = clusters
+
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+ 
+fig = plt.figure(figsize=(20,10))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(df.Age[df.label == 0], df["Annual Income (k$)"][df.label == 0], df["Spending Score (1-100)"][df.label == 0], c='blue', s=60)
+ax.scatter(df.Age[df.label == 1], df["Annual Income (k$)"][df.label == 1], df["Spending Score (1-100)"][df.label == 1], c='red', s=60)
+ax.scatter(df.Age[df.label == 2], df["Annual Income (k$)"][df.label == 2], df["Spending Score (1-100)"][df.label == 2], c='green', s=60)
+ax.scatter(df.Age[df.label == 3], df["Annual Income (k$)"][df.label == 3], df["Spending Score (1-100)"][df.label == 3], c='orange', s=60)
+ax.scatter(df.Age[df.label == 4], df["Annual Income (k$)"][df.label == 4], df["Spending Score (1-100)"][df.label == 4], c='purple', s=60)
+ax.view_init(30, 185)
+plt.xlabel("Age")
+plt.ylabel("Annual Income (k$)")
+ax.set_zlabel('Spending Score (1-100)')
+plt.show()
+```
+
+
+
+
+
+
