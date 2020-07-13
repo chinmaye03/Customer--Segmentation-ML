@@ -46,6 +46,14 @@ where,
                            ‘ci’ is the number of data points in ith cluster.
                            
                            ‘c’ is the number of cluster centers
+                           
+   **The algorithm works as follows:**
+
+1. First we initialize k points, called means, randomly.
+
+2. We categorize each item to its closest mean and we update the mean’s coordinates, which are the averages of the items categorized in that mean so far.
+
+3. We repeat the process for a given number of iterations and at the end, we have our clusters                        
  
 
 
