@@ -84,8 +84,8 @@ This project is a part of the [Mall Customer Segmentation Data competition](http
 
 The dataset can be downloaded from the kaggle website which can be found [here](https://www.kaggle.com/vjchoudhary7/customer-segmentation-tutorial-in-python)
 
-**The steps involved in implementing K means are:**
-1. Importing required libraries.
+#### The steps involved in implementing K means are:**
+**1. Importing required libraries->**
 
 Machine Learning, as the name suggests, is the science of programming a computer by which they are able to learn from different kinds of data.
 
@@ -100,7 +100,7 @@ from sklearn.decomposition import PCA
 ```
 
 
-2. Accessing the dataset
+**2. Accessing the dataset->**
 
 The required dataset is accessed in order to analyze and build the necessary model for achieving the overall objective of the problem.
 ```
@@ -110,7 +110,7 @@ df.head()
 ![](https://miro.medium.com/max/503/1*XaLlilAemUIhlqVHrfnMFw.png)
 
 
-3. Analyzing the dataset
+**3.  Analyzing the dataset->**
 
 At this point, we have enough sample data to work with. Let’s start by finding the correlation between different variables. First we’ll create a scatter plot, and relate the values for two variables of each row. In our code, we also customize the look by defining the font and figure size and colors of the points with matplotlib.
 
@@ -139,7 +139,7 @@ plt.ylabel("Number of Customer Having the Score")
 plt.show()
 ```
 
-4.Implementing K means algorithm
+**4. Implementing K means algorithm->**
 
 Next I plotted Within Cluster Sum Of Squares (WCSS) against the the number of clusters (K Value) to figure out the optimal number of clusters value. WCSS measures sum of distances of observations from their cluster centroids which is given by the below formula.
 
@@ -167,7 +167,7 @@ plt.show()
 ```
 
 
-5.Visualizing the Clusters
+**5. Visualizing the Clusters->**
 
 **The Elbow Method:**
  
