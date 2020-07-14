@@ -1,5 +1,5 @@
 ## Project:Customer Segmentation using Machine learning
-  ### Machine learning in python:
+  **Machine learning in python:**
           
           
   **Machine learning is a type of artificial intelligence (AI) that provides computers with the ability to learn without being explicitly programmed. Machine learning focuses on the development of Computer Programs that can change when exposed to new data. n of a simple machine learning algorithm using python.**
@@ -179,7 +179,8 @@ Finally I made a 3D plot to visualize the spending score of the customers with t
 
 
 
-```km = KMeans(n_clusters=5)
+```
+km = KMeans(n_clusters=5)
 clusters = km.fit_predict(df.iloc[:,1:])
 df["label"] = clusters
 
@@ -200,6 +201,7 @@ plt.xlabel("Age")
 plt.ylabel("Annual Income (k$)")
 ax.set_zlabel('Spending Score (1-100)')
 plt.show()
+
 ```
 
 **With the help of clustering, we can understand the variables much better, prompting us to take careful decisions. With the identification of customers, companies can release products and services that target customers based on several parameters like income, age, spending patterns, etc. Furthermore, more complex patterns like product reviews are taken into consideration for better segmentation.**
