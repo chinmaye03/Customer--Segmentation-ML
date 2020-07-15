@@ -84,7 +84,7 @@ This project is a part of the [Mall Customer Segmentation Data competition](http
 
 The dataset can be downloaded from the kaggle website which can be found [here](https://www.kaggle.com/vjchoudhary7/customer-segmentation-tutorial-in-python)
 
-#### The steps involved in implementing K means are:**
+#### The steps involved in implementing K means are:
 **1. Importing required libraries->**
 
 Machine Learning, as the name suggests, is the science of programming a computer by which they are able to learn from different kinds of data.
